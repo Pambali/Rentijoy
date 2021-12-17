@@ -2,8 +2,8 @@
   "development": {
     "username": "admin",
     "password": "Siva2020",
-    "database": "Sivadb",
-    "host": "mydatabase.caqx5begmwwr.ap-south-1.rds.amazonaws.com",
+    "database": "Rentijoydb",
+    "host": "mydatabase.czerntfl0tqf.ap-south-1.rds.amazonaws.com",
     "dialect": "mysql"
   },
   "test": {

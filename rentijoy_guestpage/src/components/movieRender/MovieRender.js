@@ -1,9 +1,9 @@
 import React,{useState,useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import { movieBodyRenderFunction } from './Homelist'
-import { fetchMovieList,fetchMovieDetail } from './Api/apis'
-import MovieCast from './movie/cast'
-import MovieBasic from './movie/basic'
+import { fetchMovieList,fetchMovieDetail,fetchUserMovieDetail } from './Api/apis'
+import MovieCast from './movie cast and details/cast'
+import MovieBasic from './movie cast and details/basic'
 import './Home.css'
 
 /****************  Function to render details of cast inside the Single movie detail*****************/
@@ -12,31 +12,26 @@ import './Home.css'
 export function SingleMovie(){
     let path=useParams();
     let movieID=path.movie;
+    let userdetail = localStorage.getItem('user_mail')
+    userdetail = JSON.parse(userdetail)
+    const userid=userdetail.users.userId;
     const[movie,setMovie]=useState([{}]);
     const [cast,setcast]=useState([])
+    const [userm,setUserm]=useState(false)
     useEffect(()=>{
+    fetchUserMovieDetail(userid,movieID)
+    .then((res)=>{setUserm(res.data.BuyedStatus||res.data.RentStatus)})
+    .catch(e=>console.log(e))
     fetchMovieDetail(movieID)
-    .then(res=>{setMovie(res.data); setcast(res.data.movieCast)})
+    .then(res=>{
+      setMovie(res.data); 
+      setcast(res.data.movieCast);
+    })
     .catch(e=>{console.log(e)})
-    },[movieID])
+    },[movieID,userid])
     return(
         <div className="movie-detailed-page">
-        {/* <div className="poster">
-          <img alt="movie" src={movie.Poster}></img>
-        </div>
-        <div className="movie-info">
-          <div className="movie-head">
-            <h1>{movie.MovieName}</h1>
-            <span className="year">{movie.Year}</span>
-            <span className="duration">{movie.Duration}utes</span> 
-            <div className="genre">{movie.Genre}</div>
-          </div>
-          <div className="movie-amt">
-            <button className='buyRent'>Rent  {movie.RentAmt}</button>
-            <button className='buyRent'>Buy  {movie.BuyAmt}</button>
-          </div>
-        </div> */}
-        <MovieBasic movie={movie}/>
+        <MovieBasic movie={movie} userm={userm}/>
         <MovieCast movie={movie} cast={cast}/>
       </div>
         )

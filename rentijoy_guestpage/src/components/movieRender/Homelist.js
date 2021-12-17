@@ -73,7 +73,7 @@ useEffect(()=>{
     .catch(e=>{console.log(e)});   
 },[])
     return (
-        <div id="homeContainer">
+        <div id="homeContainer" key={"homeContainer"}>
             {   
                 listOfMovies.map((props)=>listRenderFunction(props))  
             }

@@ -54,7 +54,7 @@ const moviePayment= async(req,res)=>
                userId:userId,
                MovieId:MovieId,
                RentStatus:(movieRentType==="Rent")?true:false,
-               RentExpireDate:rentexpdate[0].rentdate,
+               RentExpireDate:(movieRentType==="Rent")?rentexpdate[0].rentdate:"",
                BuyedStatus:(movieRentType==="Buy")?true:false
            }
          var usermovie=await userMovies.create(userMovieInfo)
