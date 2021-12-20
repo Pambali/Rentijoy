@@ -1,17 +1,18 @@
 import React from 'react';
-//import {Link} from 'react-router-dom';
 import "./signlog.css";
 import axios from 'axios';
 import { useNavigate } from 'react-router';
+import Navbar from '../Navbar';
 
  function Forgotpassword(){
+   
      let navigate=useNavigate();
-    function handleSubmit(){  
-       // e.preventDefault();
+    function handleSubmit(e){
+        e.preventDefault();  
        const user_mail=document.getElementById("user_mail");
        const password=document.getElementById("password");
        const confirmpassword=document.getElementById("confirmpassword");
-       Validation(user_mail);
+       
        onEmpty(user_mail)
        onEmpty(password);
        onEmpty(confirmpassword);
@@ -25,6 +26,8 @@ import { useNavigate } from 'react-router';
             if(resp.data.message==="Password changed successfully "){
             console.log("data Stored",resp.data)
             document.getElementById("user_mail").value="";
+            document.getElementById("password").value="";
+            document.getElementById("confirmpassword").value="";
             navigate('/login');
             }
         })
@@ -38,17 +41,15 @@ import { useNavigate } from 'react-router';
     }
       
     }
+    function onchange(p){
+        document.getElementById(p.target.id).nextElementSibling.innerHTML=""
+       }
+    
     function onEmpty(p){
         if(p.value===""){
           p.nextElementSibling.innerHTML="This field is required";
         }
        }
-
-       function Validation(p){
-        if( (p.value==="")||((!p.value.includes("@")) || (!p.value.includes(".com")))) {
-           p.nextElementSibling.innerHTML="Invalid mail";  
-        }
-     }
   
      function cancle(){
         alert("cancel")
@@ -57,17 +58,20 @@ import { useNavigate } from 'react-router';
       
 
          return(
+             <>
+              <Navbar/>
              <div className="forgot">
                  <h2>Forgot password</h2>
+                 <form onSubmit={handleSubmit}>
                  <div className="forgot_password">
                  <div className="formElements">
                   User Email 
-                 <input type="text" name="user_mail" id="user_mail" onChange={onchange}></input>
+                 <input type="email" name="user_mail" id="user_mail" required pattern='^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$' onChange={onchange}></input>
                  <span style={{color:"#f00"}} ></span>
                  </div><br/>
                  <div className="formElements">  
                   Enter New Password 
-                 <input type="password" name="password" id="password" onChange={onchange}></input>
+                 <input type="password" name="password" id="password" required pattern="[A-Z]{1,}[a-z]{5,}[0-9]{2,}" onChange={onchange}></input>
                  <span style={{color:"#f00"}} ></span>
                  </div><br />
                  <div className="formElements">
@@ -76,12 +80,14 @@ import { useNavigate } from 'react-router';
                   <span style={{color:"#f00"}} ></span>
                   </div><br/>
                  <div> 
-                 <button className="btn1" onClick={handleSubmit} type="submit">submit</button>
+                 <button className="btn1"  onClick={()=> navigate("/login")} type="submit">submit</button>
                  <button className="btn1" onClick={cancle}>Cancel</button>
                  </div>
                  </div>
+                 </form>
              </div>
+             </>
          )
  }
   
- export default Forgotpassword
+ export default Forgotpassword;    

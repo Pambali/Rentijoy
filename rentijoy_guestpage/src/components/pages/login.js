@@ -5,10 +5,13 @@ import './signlog.css';
 import {Link} from 'react-router-dom'
 import {useNavigate} from "react-router-dom"
 import Navbar from '../Navbar';
+
+
 function Login(){
   let navigate=useNavigate();
   function handleSubmit(){   
-     
+    
+    
     axios.post("http://localhost:4000/user/getUser",
     {
       userEmail:document.getElementById("user_mail").value,
@@ -16,7 +19,8 @@ function Login(){
     })
     .then(resp=>  
       {alert(resp.data.message);
-       console.log(resp.data.message);
+       console.log(resp.data);
+
        if(resp.data.message==="Sucessful Login"){
         localStorage.setItem('log',true)
          localStorage.setItem('user_mail',JSON.stringify(resp.data))
@@ -37,6 +41,7 @@ function cancle(){
 
     return (
 <><Navbar/>
+      <div className="Loginhole">
       <div className="Login">
 
                       <img src={image} alt=" "></img>
@@ -61,6 +66,8 @@ function cancle(){
                        <button className="btn1" onClick={cancle}>Cancel</button>
                        </div>
       </div>
+      </div>
+      
       </>
     );
   }

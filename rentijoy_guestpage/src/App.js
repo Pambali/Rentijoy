@@ -7,6 +7,7 @@ import Login from './components/pages/login';
 import MoviesByGenre,{SingleMovie} from './components/movieRender/MovieRender';
 import Forgotpassword from './components/pages/Forgot_password';
 import Userinfo from './components/pages/Userinfo';
+import Delete from './components/pages/delete';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route  path="/movies/movie/:movie" element={<SingleMovie/>}/>
           <Route path="/userinfo" element={<Userinfo/>} />
           <Route path="/forgot_password" element={<Forgotpassword/>}/>
+          <Route path="/delete" element={<Delete/>}/>
         </Routes>
       </Router>
     </div>

@@ -40,7 +40,7 @@ function Navbar() {
           </ul>
           {button && !log && <Button buttonStyle='btn--outline'>LOGIN/REGISTER</Button>}
            {
-               log && <a href='/userinfo'> <button className='btn2'>{userdetail.users.userName}</button></a>
+                log && <a href='/userinfo'> <button className='btn2'>{userdetail.users.userName}</button></a>
            }
 
         </div>

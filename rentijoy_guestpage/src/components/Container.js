@@ -32,7 +32,8 @@ function Container() {
     timeoutRef.current = setTimeout(() =>
       setIndex((prevIndex) => prevIndex === slideimage.length - 1 ? 0 : prevIndex + 1), delay);
        return () => {resetTimeout();};
-  }, [index]);
+       // eslint-disable-next-line 
+  },[index]);
 React.useEffect(()=>{
   data()
 },[])

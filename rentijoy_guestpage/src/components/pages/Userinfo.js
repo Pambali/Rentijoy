@@ -1,23 +1,40 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./signlog.css"
 import image from './image/userpro.png';
 import Navbar from "../Navbar";
 function Userinfo(){
+    
  let navigate=useNavigate();
 let userdetail = localStorage.getItem('user_mail')
    userdetail = JSON.parse(userdetail)
    console.log(userdetail)
+   const defaulT={message:"Sucessful Logout",
+                 users:{userId:"-",
+                        userName:"-",
+                        userEmail:"-",
+                        userPhone:0,
+                        userPassword:"-",
+                        Logged:false,
+                        createdAt:"-",
+                        updatedAt:"-"
+                }}
+   let log=localStorage.getItem('log')
+   log==='true'?log=true:log=false;
 
-   function onLogout(){
+   function onLogout(){  
     localStorage.setItem('log',false)
+    localStorage.setItem('user_mail',JSON.stringify(defaulT))
        alert("Logout Succesfully");
-       navigate("/")
+           navigate("/")
+    }
 
-   }
-
-    return(<><Navbar/>
+    
+    return(
+        <><Navbar/>
+        
         <div className="userinfo">
+           
                <div className="userprofile">   
               <h2>User Profile</h2>
               <img className="image" src={image} alt=" "></img>
@@ -31,8 +48,11 @@ let userdetail = localStorage.getItem('user_mail')
             
              <button className="btn1" onClick={onLogout}>LOGOUT</button>
              </div>
+             
+               
          </div>
-            
+         <h3>Are you Permanately delete your account?<Link to="/delete">Remove</Link>
+               </h3>
          </>
     )
 }
