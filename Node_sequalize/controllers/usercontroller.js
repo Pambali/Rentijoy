@@ -11,7 +11,7 @@ var addNewUser = async (req, res) => {
         return res.status(200).json({ "message": "Sucessful" });
 
     } catch (e) {
-        return res.status(500).json({ "message": e });
+        return res.status(200).json({ "message": e });
     }
 }
 
@@ -28,8 +28,6 @@ var getUser = async (req, res) => {
             if (users.userPassword === userPassword) {
                 users.Logged = true;
                 await users.save()
-                console.log("******************password matched *********************")
-
                 return res.status(200).json({ "message": "Sucessful Login", users });
             }
             else {
@@ -64,11 +62,31 @@ var forgotPassword = async (req, res) => {
             }
         }
     }
-    else (typeof (users) === undefined)
+    else{
       return res.status(202).json({ "message": "user not found" });
-
+    }
 }
 
+
+var deleteaccount = async (req, res) => {
+    const {userEmail } = req.body;
+    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>",userEmail)
+    const users = await user.findOne({ where: { userEmail: userEmail } })
+  if(users){
+      console.log("userFound")
+      
+    await user.destroy({ where: { userEmail: userEmail } }).then(()=>
+      {return res.status(200).json({"message":"succesfully deleted"})
+    })
+
+}
+   else
+   {   console.log("usernotfound")
+         return res.status(200).json({"message":"user Not found"})
+     }
+
+    }
+
 module.exports = {
-    addNewUser, getUser, forgotPassword
+    addNewUser, getUser, forgotPassword, deleteaccount 
 }

@@ -15,8 +15,9 @@ app.get("/",(req,res)=>
     return res.json({"message":"Success"})
 })
 
-const PORT=4000;
-app.listen({port:PORT},async()=>{
+
+const PORT= 4000 ;
+app.listen(PORT,async()=>{
     console.log(`server started at ${PORT}`)
     try{
        await sequelize.authenticate();
@@ -32,4 +33,3 @@ app.use('/user',userrouter)
 app.use('/movie',movierouter);
 app.use('/user/movies',mymovierouter)
 
-/* sequelize model:generate --name User --attributes firstname:string, lastname:string*/ 
