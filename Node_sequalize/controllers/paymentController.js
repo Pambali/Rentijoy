@@ -18,8 +18,9 @@ const orderMovie=async  (req, resp) => {
     console.log(type)
     var product =await movie.findOne({where :{MovieId:productId}})
     var amount=0;
-    if(type==="Rent")
+    if(type==="Rent"){
      amount = product.RentAmt * 100;
+    }
      else
      amount= product.BuyAmt*100;
     const currency = 'INR';
