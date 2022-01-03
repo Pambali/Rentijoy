@@ -10,8 +10,8 @@ var addNewUser = async (req, res) => {
         console.log(addusers);
         return res.status(200).json({ "message": "Sucessful" });
 
-    } catch (e) {
-        return res.status(200).json({ "message": e });
+    } catch (err) {
+        return res.status(200).json({ "message": err });
     }
 }
 
@@ -36,9 +36,9 @@ var getUser = async (req, res) => {
         } else {
             return res.status(202).json({ "message": "User not found" });
         }
-    } catch (e) {
-        console.log(e)
-        return res.status(500).json({ "message": e });
+    } catch (err) {
+        console.log(err)
+        return res.status(500).json({ "message": err });
     }
 
 }
