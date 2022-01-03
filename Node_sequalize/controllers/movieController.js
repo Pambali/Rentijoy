@@ -1,4 +1,4 @@
-const res = require("express/lib/response");
+const respo = require("express/lib/response");
 const {movie,movieCast,sequelize} =require("../models");
 
 var addMovie = async(req,res) =>
