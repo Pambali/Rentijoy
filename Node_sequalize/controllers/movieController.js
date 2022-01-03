@@ -64,7 +64,7 @@ var MovieList= async(req,res) =>{
 var MoviesByGenre= async(req,res) =>{
     var query = require('url').parse(req.url,true).query;
     var movieGenre=query.genre;
-    movieGenre=== "kids" ? movieGenre= "animation" : movieGenre;
+    movieGenre== "kids" ? movieGenre= "animation" : movieGenre;
     var limiT=parseInt(query.limit);
     try{
         if(limiT){
