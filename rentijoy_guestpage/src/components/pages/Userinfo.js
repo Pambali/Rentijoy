@@ -21,8 +21,8 @@ let userdetail = localStorage.getItem('user_mail')
                         createdAt:"-",
                         updatedAt:"-"
                 }}
-   let log=localStorage.getItem('log')
-   log==='true'?log=true:log=false;
+   let Log=localStorage.getItem('log')
+   Log==='true'?Log=true:Log=false;
 
    function onLogout(){  
     localStorage.setItem('log',false)
