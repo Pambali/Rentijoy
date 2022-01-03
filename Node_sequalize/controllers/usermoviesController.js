@@ -9,6 +9,7 @@ const getUserMovies = async(req,res)=>{
             where:{userId:id,MovieId:movieId},   
         }).then(res=>{
            console.log(res);
+           return res
         })
       
        if(mymovies){
