@@ -47,7 +47,7 @@ var getUser = async (req, res) => {
 var forgotPassword = async (req, res) => {
     const { userPassword, userEmail } = req.body;
 
-    const users = await user.findOne({ where: { userEmail: userEmail } }).catch(e => { console.log(e) });
+    const users = await user.findOne({ where: { userEmail: userEmail } }).catch(err => { console.log(err) });
 
     if (users) {
         if (users.userEmail === userEmail) {
