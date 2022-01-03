@@ -3,7 +3,6 @@ const getUserMovies = async(req,res)=>{
     var query = require('url').parse(req.url,true).query;
     var id=query.id;
     var movieId=query.movieid;
-    var movies=[];
    
     try{
        const mymovies=await userMovies.findAll({
