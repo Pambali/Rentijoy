@@ -60,6 +60,7 @@ import Navbar from '../Navbar';
          return(
              <>
               <Navbar/>
+              <div className="Loginhole"> 
              <div className="forgot">
                  <h2>Forgot password</h2>
                  <form onSubmit={handleSubmit}>
@@ -85,6 +86,7 @@ import Navbar from '../Navbar';
                  </div>
                  </div>
                  </form>
+             </div>
              </div>
              </>
          )

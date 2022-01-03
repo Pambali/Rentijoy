@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import "./signlog.css"
 import image from './image/userpro.png';
 import Navbar from "../Navbar";
+
+
 function Userinfo(){
     
  let navigate=useNavigate();
@@ -32,7 +34,7 @@ let userdetail = localStorage.getItem('user_mail')
     
     return(
         <><Navbar/>
-        
+        <div className="totaluserinfo">
         <div className="userinfo">
            
                <div className="userprofile">   
@@ -53,8 +55,11 @@ let userdetail = localStorage.getItem('user_mail')
          </div>
          <h3>Are you Permanately delete your account?<Link to="/delete">Remove</Link>
                </h3>
+               </div>
          </>
     )
 }
  
- export default Userinfo;
+  export default Userinfo;
+
+
