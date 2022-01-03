@@ -20,7 +20,7 @@ var addMovie = async(req,res) =>
         Producers:req.body.Producers,
         Language:req.body.Language
     }
-   // const{MovieName,Poster,Rating,ReleasedYear,Duration,Genre,RentAmt,BuyAmt,Description,Actors,Producers,Director,Writer}=req.body;
+   
     try{
         var addmoviedetails=await movie.create(movieInfo);
         var MovieId=addmoviedetails.MovieId;
